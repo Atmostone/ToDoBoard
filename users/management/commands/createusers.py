@@ -13,6 +13,10 @@ class Command(BaseCommand):
         :param options:
         :return:
         """
+        user = CustomUser.objects.create_user('admin', password='0', email='admin@email.com')
+        user.is_superuser = True
+        user.is_staff = True
+        user.save()
 
         user = CustomUser.objects.create_user('user1', password='1', email='user1@email.com')
         user.save()
