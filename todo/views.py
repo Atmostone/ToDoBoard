@@ -1,7 +1,7 @@
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 
-from todo.filters import ProjectFilter
+from todo.filters import ProjectFilter, ToDoFilter
 from todo.models import Project, ToDo
 from todo.paginations import ToDoPagination, ProjectPagination
 from todo.serializers import ProjectSerializer, ToDoSerializer
@@ -18,7 +18,7 @@ class ToDoViewSet(ModelViewSet):
     queryset = ToDo.objects.all()
     serializer_class = ToDoSerializer
     pagination_class = ToDoPagination
-    filterset_fields = ['project']
+    filterset_class = ToDoFilter
 
     def destroy(self, request, *args, **kwargs):
         instance = self.get_object()
