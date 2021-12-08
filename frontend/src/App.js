@@ -4,7 +4,7 @@ import './App.css';
 import ProjectList from './components/Project.js'
 import ToDoList from './components/ToDo.js'
 import LoginForm from './components/Auth.js'
-import {HashRouter, Link, Redirect, Route, Switch} from 'react-router-dom'
+import {BrowserRouter, Link, Redirect, Route, Switch} from 'react-router-dom'
 import Cookies from 'universal-cookie'
 
 
@@ -126,7 +126,7 @@ class App extends React.Component {
     render() {
         return (
             <div>
-                <HashRouter>
+                <BrowserRouter>
                     <nav>
                         <ul>
                             <li>
@@ -150,7 +150,7 @@ class App extends React.Component {
                         <Redirect from='/projects' to='/'/>
                         <Route component={Page404}/>
                     </Switch>
-                </HashRouter>
+                </BrowserRouter>
             </div>
         )
     }
