@@ -6,7 +6,7 @@ from users.models import CustomUser
 class Project(models.Model):
     name = models.CharField(max_length=100)
     repository = models.CharField(max_length=1000)
-    users = models.ManyToManyField(CustomUser)
+    users = models.ManyToManyField(CustomUser, blank=True)
 
 
 class ToDo(models.Model):
