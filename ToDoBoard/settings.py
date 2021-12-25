@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'django_filters',
     'drf_yasg',
+    'graphene_django',
 
     'users',
     'todo',
@@ -157,3 +158,8 @@ REST_FRAMEWORK = {
         #'rest_framework_simplejwt.authentication.JWTAuthentication',
     )
 }
+
+GRAPHENE = {
+    "SCHEMA": "todo.schema.schema"
+}
+
