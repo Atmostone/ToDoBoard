@@ -2,10 +2,10 @@ import React from 'react'
 import axios from 'axios'
 import './App.css';
 import ProjectList from './components/Project.js'
-import ToDoList from './components/ToDo.js'
 import LoginForm from './components/Auth.js'
 import {BrowserRouter, Link, Redirect, Route, Switch} from 'react-router-dom'
 import Cookies from 'universal-cookie'
+import ToDoList from "./components/ToDo";
 
 
 const Page404 = ({location}) => {
@@ -123,6 +123,15 @@ class App extends React.Component {
         this.get_token_from_storage()
     }
 
+    deleteToDo(id) {
+        const headers = this.get_headers()
+        axios.delete(`http://127.0.0.1:8000/api/todos/${id}`, {headers})
+            .then(response => {
+                this.setState({todos: this.state.todos.filter((todo) => todo.id !== id)})
+            }).catch(error => console.log(error))
+    }
+
+
     render() {
         return (
             <div>
@@ -144,7 +153,9 @@ class App extends React.Component {
                     <Switch>
                         <Route exact path='/' component={() => <ProjectList projects={this.state.projects}/>}/>
                         <Route exact path='/todos'
-                               component={() => <ToDoList todos={this.state.todos} projects={this.state.projects}/>}/>
+                               component={() => <ToDoList todos={this.state.todos}
+                                                          deleteToDo={(id) => this.deleteToDo(id)}/>}/>
+
                         <Route exact path='/login' component={() => <LoginForm
                             get_token={(login, password) => this.get_token(login, password)}/>}/>
                         <Redirect from='/projects' to='/'/>
