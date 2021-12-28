@@ -4,7 +4,7 @@ import React from 'react'
 class ToDoForm extends React.Component {
     constructor(props) {
         super(props)
-        this.state = {text: '', project: 1, created_by: 1}
+        this.state = {text: '', project: props.projects[0].id, created_by: props.users[0].id}
     }
 
     handleChange(event) {
@@ -32,13 +32,20 @@ class ToDoForm extends React.Component {
 
                 <div className="form-group">
                     <label>project</label>
-                    <input type="number" className="form-control" name="project" value={this.state.project}
-                           onChange={(event) => this.handleChange(event)}/>
+
+                    <select name="project" className='form-control' onChange={(event) =>
+                        this.handleChange(event)}>
+                        {this.props.projects.map((item) => <option value={item.id}>{item.name}</option>)}
+                    </select>
+
+                    onChange={(event) => this.handleChange(event)}/>
                 </div>
                 <div className="form-group">
                     <label>created by</label>
-                    <input type="number" className="form-control" name="created_by" value={this.state.created_by}
-                           onChange={(event) => this.handleChange(event)}/>
+                    <select name="user" className='form-control' onChange={(event) =>
+                        this.handleChange(event)}>
+                        {this.props.users.map((item) => <option value={item.id}>{item.username}</option>)}
+                    </select>
                 </div>
                 <input type="submit" className="btn btn-primary" value="Save"/>
             </form>
