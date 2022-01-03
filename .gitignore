@@ -166,3 +166,7 @@ templates/
 
 node_modules/
 package-lock.json
+docker-compose.yml
+wait-for-postgres.sh
+Dockerfile
+.dockerignore
